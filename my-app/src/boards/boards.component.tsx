@@ -1,7 +1,9 @@
 import * as React from "react";
-// import { IBoard } from "../interfaces/IBoard";
-import { IBoards } from "../interfaces/IBoards";
+import { Button } from "reactstrap";
+import { Board } from "./board/board.component";
 
+import { ModalAddComponent } from "../General/ModalAdd.component";
+import { IBoards } from "../interfaces/IBoards";
 
 
 
@@ -11,13 +13,9 @@ export class BoardsComponent extends React.Component<{}, IBoards> {
     constructor(props: any) {
         super(props);
         this.state = {boards: []};
-        // this.getBoards();
-        // fetch('http://localhost:19489/api/boards')
-        //     .then(responce => responce.json() as Promise<IBoard[]>)
-        //     .then(data => this.setState(prevState => ({boards: data})))
+        
 
     }
-
 
     public componentDidMount() {
         fetch(this.url, {
@@ -30,31 +28,22 @@ export class BoardsComponent extends React.Component<{}, IBoards> {
             .then(responce => responce.json())
             .then(data => this.setState({boards: data.boards}))
     }
-    // public getBoards() {
-    //             fetch(this.url, {
-    //                 method: 'GET',
-    //                 // headers: {
-    //                 //     'Accept': 'application/json',
-    //                 //     'Content-Type': 'application/json',
-    //                 //   }
-    //             })
-    //                 .then(responce => responce.json() as Promise<IBoard[]>)
-    //                 .then(data => ({boards: data}))
-                
-    //         }
-    
-    
-    public render() {
-        
-        return(
-            
-            <div>
 
-                
-                {this.state.boards.map(board => <div key={board.id}>
-                    <div>{board.description} {board.title}</div>
-                </div>)}
-            </div>
+    public modalAdd() {
+        return (
+            <ModalAddComponent url={this.url} headername={"Board"} modal={true}/>
         )
     }
+    
+     public render() {
+        
+        return(
+            <div className="col-sm-5">
+                <Button color="primary" onClick={this.modalAdd} size="lg" block={true} style={{marginBottom: '5px'}}>Add New Board</Button>
+                {this.state.boards.map(board => <Board key={board.id} id={board.id}/>)}
+            </div>
+        ) 
+                 
+    }
+    
 }
