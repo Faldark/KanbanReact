@@ -19,9 +19,11 @@ export class ModalAddComponent extends React.Component<IProps, IState > {
             description: "",
             modal: props.modal,
             title : "",
+           
             
             
         }
+        this.toggle = this.toggle.bind(this);
     }
 
     public toggle() {
@@ -49,9 +51,12 @@ export class ModalAddComponent extends React.Component<IProps, IState > {
     public render() {
         return (
             <div>
+
+                    
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}> Add new {this.props.headername}</ModalHeader>
                     <ModalBody>
+                        
                         TEST BODY
                     </ModalBody>
                     <ModalFooter>
