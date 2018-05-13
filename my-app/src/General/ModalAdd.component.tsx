@@ -1,5 +1,8 @@
+import { observer } from "mobx-react";
 import * as React from "react";
+
 import { Button, Modal,ModalBody,ModalFooter, ModalHeader   } from "reactstrap";
+
 
 interface IProps {
     url: string,
@@ -12,7 +15,9 @@ interface IState {
     modal: boolean
 }
 
+@observer
 export class ModalAddComponent extends React.Component<IProps, IState > {
+    
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -61,7 +66,7 @@ export class ModalAddComponent extends React.Component<IProps, IState > {
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary">Add</Button>
-                        <Button color="primary">Cancel</Button>
+                        <Button color="primary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

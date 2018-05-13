@@ -2,6 +2,8 @@ import * as React from "react";
 import { Button } from "reactstrap";
 import { Board } from "./board/board.component";
 
+
+
 import { ModalAddComponent } from "../General/ModalAdd.component";
 // import { IBoard } from "../interfaces/IBoard";
  import { IBoards } from "../interfaces/IBoards";
@@ -11,12 +13,13 @@ interface IState extends IBoards{
     showModal: boolean
 }
 
+
 export class BoardsComponent extends React.Component<{}, IState> {
     private url = "http://localhost:19489/api/boards";
     
     constructor(props: any) {
         super(props);
-        this.state = {boards: [], showModal: false};
+        this.state = {boards: [], showModal: true};
         this.modalOpen = this.modalOpen.bind(this)
         
     
@@ -35,7 +38,7 @@ export class BoardsComponent extends React.Component<{}, IState> {
     }
 
     public modalOpen() {
-        alert(this.state.showModal)
+        
         this.setState({
             showModal: true
         })
