@@ -5,7 +5,8 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "disable-next-line": "no-console"
+    "object-literal-sort-keys": false,
+    "no-console": 0
   },
   "linterOptions": {
     "exclude": [
