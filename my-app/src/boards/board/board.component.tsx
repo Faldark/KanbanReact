@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Button,Container,Jumbotron  } from 'reactstrap';
+
 import { IBoard } from "../../interfaces/IBoard";
 import './board.component.css';
 interface IBd {
@@ -34,18 +34,17 @@ export class Board extends React.Component<IBd, IBoard> {
     public render() {
         return (
             <div>
-                <Jumbotron fluid={true}>
-                  <Container fluid={true}>
-                    <h1 className="display-3">{this.state.title}</h1>
-                    <p className="lead">{this.state.description}</p>
-                    <hr className="my-2"/>
-                    <p className="lead btn-toolbar">
+                <div>
+                    <h1>{this.state.title}</h1>
+                    <p>{this.state.description}</p>
+                    <div className="row">
+                        <p><a className="btn btn-primary btn-lg" href="#" role="button" style={{marginRight: '5px'}}>Delete board</a></p>
+                        <p><a className="btn btn-primary btn-lg" href="#" role="button" style={{marginRight: '5px'}}>View board</a></p>
+                    </div>
                     
-                        <Button color="primary" style={{marginRight: '5px'}}>Delete board</Button>
-                        <Button color="primary" style={{marginLeft: '5px'}}>View board</Button>
-                    </p>
-                   </Container>
-                </Jumbotron>
+                </div>
+               
+                
             </div>
         )
     }

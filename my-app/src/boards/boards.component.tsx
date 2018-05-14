@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "reactstrap";
+
 import { Board } from "./board/board.component";
 
 
@@ -19,7 +19,7 @@ export class BoardsComponent extends React.Component<{}, IState> {
     
     constructor(props: any) {
         super(props);
-        this.state = {boards: [], showModal: true};
+        this.state = {boards: [], showModal: false};
         this.modalOpen = this.modalOpen.bind(this)
         
     
@@ -43,18 +43,15 @@ export class BoardsComponent extends React.Component<{}, IState> {
             showModal: true
         })
 
-        // return (
-        //     <div>
-        //         <ModalAddComponent url={this.url} headername={"Board"} modal={true}/>
-        //     </div>
-        // )
+        
     }
     
      public render() {
         
         return(
             <div className="col-sm-5">
-                <Button color="primary" onClick={this.modalOpen} size="lg" block={true} style={{marginBottom: '5px'}}>Add New Board</Button>
+                {/* <Button color="primary" onClick={this.modalOpen} size="lg" block={true} style={{marginBottom: '5px'}}>Add New Board</Button> */}
+                <p><a className="btn btn-primary btn-lg " onClick={this.modalOpen} role="button" >Add New Board</a></p>
                 <ModalAddComponent url={this.url} headername={"Board"} modal={this.state.showModal}/>
                 {this.state.boards.map(board => <Board key={board.id} id={board.id}/>)}
             </div>

@@ -6,6 +6,14 @@
   ],
   "rules": {
     "object-literal-sort-keys": false,
+    "ordered-imports": [
+  true,
+  {
+    "import-sources-order": "any",
+    "named-imports-order": "any"
+  }
+],
+    "origin-ordered-imports": false,
     "no-console": 0
   },
   "linterOptions": {
