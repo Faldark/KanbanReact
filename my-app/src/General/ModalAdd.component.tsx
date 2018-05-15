@@ -51,7 +51,7 @@ export class ModalAddComponent extends React.Component<IProps, IState> {
     }
 
     public add = (e:any) => {
-        // e.preventDefault();
+         e.preventDefault();
         
         fetch(this.props.url, {
             body: JSON.stringify({
@@ -65,9 +65,8 @@ export class ModalAddComponent extends React.Component<IProps, IState> {
                 'Content-Type': 'application/json',
               },
         })
-            // .then(responce => responce.json())
-            .then(() => this.toggle)
-        // .then(data => this.setState({boards: data.boards}))
+            // .then(() => this.props.)
+            .then(() => this.toggle())
     }
     public handleChange(event: any) {
         // // tslint:disable-next-line:no-console

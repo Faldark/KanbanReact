@@ -21,6 +21,7 @@ export class BoardsComponent extends React.Component<{}, IState> {
         super(props);
         this.state = {boards: [], showModal: false};
         this.modalOpen = this.modalOpen.bind(this)
+        this.handleDeleteBoard = this.handleDeleteBoard.bind(this);
         
     
     }
@@ -45,6 +46,9 @@ export class BoardsComponent extends React.Component<{}, IState> {
 
         
     }
+    public handleDeleteBoard(id: number) {
+        this.setState({boards : this.state.boards.filter(item => item.id !== id)});
+    }
     
      public render() {
         
@@ -53,7 +57,7 @@ export class BoardsComponent extends React.Component<{}, IState> {
                 {/* <Button color="primary" onClick={this.modalOpen} size="lg" block={true} style={{marginBottom: '5px'}}>Add New Board</Button> */}
                 <p><a className="btn btn-primary btn-lg " onClick={this.modalOpen} role="button" >Add New Board</a></p>
                 <ModalAddComponent url={this.url} headername={"Board"} modal={this.state.showModal}/>
-                {this.state.boards.map(board => <Board key={board.id} id={board.id}/>)}
+                {this.state.boards.map(board => <Board key={board.id} id={board.id} onBoardDelete={this.handleDeleteBoard}/>)}
             </div>
         ) 
                  
