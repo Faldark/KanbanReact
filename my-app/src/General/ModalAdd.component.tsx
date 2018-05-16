@@ -11,6 +11,7 @@ interface IProps {
     url: string,
     headername: string,
     modal: boolean
+    onAdd: (trigger: boolean) => void
 }
 interface IState {
     title: string,
@@ -65,8 +66,9 @@ export class ModalAddComponent extends React.Component<IProps, IState> {
                 'Content-Type': 'application/json',
               },
         })
-            // .then(() => this.props.)
+            
             .then(() => this.toggle())
+            .then(() => this.props.onAdd(true))
     }
     public handleChange(event: any) {
         // // tslint:disable-next-line:no-console
@@ -81,38 +83,33 @@ export class ModalAddComponent extends React.Component<IProps, IState> {
 
     public render() {
         return (
-            <div>
-            <Modal
-            isOpen={this.modal}
-            onRequestClose={this.toggle}
-            style={customStyles}
-            contentLabel={this.props.headername}
-            ariaHideApp={false}
-            >
-                <form  onSubmit={this.add}>
-                    <div className="form-group">
-                        <input type="text"  name="title" className="form-control input-md" placeholder="Title" onChange={this.handleChange}/>
-                    </div>
+        <div>
+        <Modal
+        isOpen={this.modal}
+        onRequestClose={this.toggle}
+        style={customStyles}
+        contentLabel={this.props.headername}
+        ariaHideApp={false}
+        >
+            <h1>Add new {this.props.headername}</h1>
+            <form  onSubmit={this.add}>
+                <div className="form-group">
+                    <input type="text"  name="title" className="form-control input-md" placeholder="Title" onChange={this.handleChange}/>
+                </div>
 
-                    <div className="form-group">
-                        <input type="text"  name="description" className="form-control input-md" placeholder="Description" onChange={this.handleChange}/>
+                <div className="form-group">
+                    <input type="text"  name="description" className="form-control input-md" placeholder="Description" onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <div className="btn-group">
+                        <button  style={{marginRight: '5px'}} className="btn btn-success btn-md" onClick={this.toggle}>Cancel</button>
+                        <input type="submit"  className="btn btn-success " value="Submit"/>
                     </div>
-                    <div className="form-group">
-                        <div className="btn-group">
-                            <button  style={{marginRight: '5px'}} className="btn btn-success btn-md" onClick={this.toggle}>Cancel</button>
-                            <input type="submit"  className="btn btn-success " value="Submit"/>
-                        </div>
-                    </div>
-                </form>
-            </Modal>
-
-
-                
+                </div>
+            </form>
+        </Modal>
 </div>
-
-
-                        
-                   
+      
         )
     }
 
